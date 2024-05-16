@@ -1,34 +1,38 @@
 'use strict'
 
-for(let i = 0; i < 3; i++){
-    console.log(i);
-    for(let j = 0; j < 3; j++){
-        console.log(j)
+for (let i = 5; i <= 10; i++){
+    console.log(i)
+}9
+
+for (let i = 20; i > 10; i--){
+    if(i === 13){
+    break;
+}
+    console.log(i)
+}
+
+for (let i = 2; i <= 10; i++){
+    if(i % 2 === 0){
+        console.log(i)
     }
 }
 
-let result = '';
-const length = 7;
 
-for(let i = 1; i < length; i++){
+let i = 2;
 
-    for(let j = 0; j < i; j++){
-        result += '*'
-    }
-
-    result += '\n'
+while(i < 16){
+i++
+if(i % 2 === 1){
+    console.log(i)
+}
 }
 
-console.log(result);
 
+let arr =[];
 
-first:for(let i = 0; i < 3; i++){
-    console.log(`First level :${i}`);
-    for(let j = 0; j < 3; j++){
-        console.log(`Second level :${j}`);
-            for(let k = 0; k < 3; k++){
-                if (k === 2) break first;
-            console.log(`Third level :${k}`);
-        }
-    }
+for(let i = 5; i <= 10; i++){
+    arr[i - 5] = i;
 }
+console.log(arr)
+
+console.log(arr[0])
