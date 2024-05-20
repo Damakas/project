@@ -1,72 +1,82 @@
 'use strict'
 
-// for(let i = 1; i < 100; i++){
-//    if( i % 3 === 0 && i % 5 === 0){
-//       console.log('BuzzFizz')
-//    }else if(i % 3 === 0){
-//       console.log('Fizz')
-//    }else if(i % 5 === 0) {
-//     console.log('Buzz')
-//    }else{
-//     console.log(i)
-//    }
-// };
+/* Задание на урок:
+
+1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
+
+2) Сделать так, чтобы пользователь не мог оставить ответ в виде пустой строки,
+отменить ответ или ввести название фильма длинее, чем 50 символов. Если это происходит - 
+возвращаем пользователя к вопросам опять
+
+3) При помощи условий проверить  personalMovieDB.count, и если он меньше 10 - вывести сообщение
+"Просмотрено довольно мало фильмов", если от 10 до 30 - "Вы классический зритель", а если больше - 
+"Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
+
+4) Потренироваться и переписать цикл еще двумя способами*/
+
+const numberOfFilms = +prompt('Сколько фильмов вы уже просмотрели?',"");
 
 
+const personalMovieDB = {
+   count: numberOfFilms,
+   movies: {},
+   actors: {},
+   genres:{},
+   privat: false
+};
 
-// for(let i = 1; i < 50; i++){
-//    if(i % 2 === 0){
-//       console.log(i)
-//    }
-// };
+// Первый вариант решения с циклом for;
 
-// for(let i = 1; i < 50;  i++){
-//    if(i % 2 === 1){
-//       console.log(i)
-//    }
-// };
+// for(let i = 0; i < 2; i++){
+//    const a = prompt('Один из последних фильмов?',""),
+//          b = prompt('На сколько оцените его?',"");
 
+//          if( a != null && b != null && a != '' && b != '' && a.length < 50){
+//             personalMovieDB.movies[a] = b;
+//          } else{
+//             i--;
+//          }
+//       }
 
-// const firstNumber = prompt('Укажите первое  число');
-// const secondNumber = prompt('Укажите второе число');
-// const sum = firstNumber + secondNumber;
-// console.log(`${firstNumber} + ${secondNumber} = ${sum}`)
+// Второй вариант решения с циклом while;
 
-// const userNumber = prompt('Укажите число');
-// for(let i = 1; i <= userNumber; i++){
-// console.log(i)
+// let i = 0;
+
+// while(i < 2){
+//    i++;
+//    const a = prompt('Один из последних фильмов?',""),
+//        b = prompt('На сколько оцените его?',"");
+//    if( a != null && b != null && a != '' && b != '' && a.length < 50
+//        ){
+//       personalMovieDB.movies[a] = b;
+//        }else(i--);
 // }
 
-// const userNumber = +prompt('Укажите число');
-// for(let i = userNumber; i >= 1; i--){
-// console.log(i)
-// }
+// Третий вариант решения с циклом do while;
 
-// const firstNumber = +prompt('Первое число');
-// const secondNumber = +prompt('Второе число');
+let i = 0;
 
-// if(firstNumber > secondNumber){
-//    console.log(`Наибольшее число : ${firstNumber}`)
-// } else if(firstNumber < secondNumber){
-//    console.log(`Наибольшее число : ${secondNumber}`)
-// }else{
-//    console.log('Числа равны')
-// }
-
-
-const userNumber = +prompt('Введите число');
-let isPrime = true;
-
-for(let i = 2; i < userNumber; i++){
-   if(userNumber % i === 0){
-      isPrime = false;
-      break;
-   }
-}
-if(isPrime){
-   console.log('Yes')
-}else{
-   console.log('No')
-}
+do{
+   i++;
+      const a = prompt('Один из последних фильмов?',"");
+      const b = prompt('На сколько оцените его?',"");
+      if(a != null && b != null && a != '' && b != '' && a.length < 50){
+         personalMovieDB.movies[a] = b;
+      }else{
+         i--;
+      }
+}while(i < 2);
 
 
+
+         if(personalMovieDB.count < 10){
+            console.log("Просмотренно довольно мало фильмов");
+         } else if(personalMovieDB.count >= 10 && personalMovieDB.count < 30 )
+         { console.log("Вы классический зритель"); 
+         }else if( personalMovieDB.count >= 30){
+            console.log('Вы киноман!');
+         }else{
+            console.log('Произошла ошибка');
+         }
+
+               console.log(personalMovieDB);
