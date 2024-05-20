@@ -1,32 +1,39 @@
 'use strict'
 
-const usdCurr = 28;
-const discount = 0.9;
+function nameUser(name){
+   return console.log('Привет, ' + name)
+}
+nameUser('Жора');
 
 
-function convert(amount,curr){
-   return curr * amount;
+function returnNeighboringNumbers(num) {
+    return [num - 1, num, num + 1];
 }
 
-function promotion(result){
-console.log(result * discount);
+console.log(returnNeighboringNumbers(5))
+
+
+
+function getMathResult(num,times) {
+if(typeof(times) !== 'number' || times <= 0){
+   return num;
 }
 
-promotion(convert(500,usdCurr));
+let str = '';
 
-// const res = convert(500,usdCurr);
-// promotion(res);
-
-function test(){
-   for (let i = 0; i < 5; i++){
-      console.log(i);
-      if(i === 3) return
+for(let i = 1; i <= times; i++){
+   if( i === times){
+      str += `${num * i}`;
+   }else{
+      str += `${num * i}---`;
    }
-   console.log('Done')
 }
 
-test();
+return str;
+}
 
-function doNothing(){}
-   console.log(doNothing() === undefined);
+getMathResult(5,10)
+console.log(getMathResult(1,10))
+
+
 
