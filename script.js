@@ -1,25 +1,74 @@
 'use strict'
 
-const str = 'teSt';
-const arr =[1, 2, 3];
+let numbersOfFilms;
 
-console.log(str.toUpperCase())
-console.log(str.toLowerCase())
-console.log(str);
+function start(){
+ numbersOfFilms = +prompt('Сколько фильмов вы уже просмотрели?',"");
 
-const fruit = "Some fruit";
+ while (numbersOfFilms == '' || numbersOfFilms == null || isNaN(numbersOfFilms)){
+      numbersOfFilms = +prompt('Сколько фильмов вы уже просмотрели?',"");
+ }
+}
 
-console.log(fruit.indexOf('fruit'))
+start();
 
-const logg = 'Hello world';
+const personalMovieDB = {
+       count: numbersOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false
+};
 
-console.log(logg.slice(6));
+function showMyDB(){
+   while( personalMovieDB.privat = false){
+      console.log(personalMovieDB)
+   }
+}
 
-console.log(logg.substring(11,6));
+showMyDB();
 
-const num = 12.2;
-console.log(Math.round(num));
+function writeYourGenres(){
+     for(let i = 1; i <= 3; i++){
+         const userQuestion = prompt(`Ваш любимый жанр под номером ${i}`);
+         personalMovieDB.genres[i] = userQuestion;
+       }
+}
 
-const test = '12.2px';
-console.log(parseInt(test));
-console.log(parseFloat(test));
+writeYourGenres();
+
+
+   function rememberMyFilms(){
+for(let i = 0; i < 2; i++){
+   const a = prompt('Один из последних просмотренных фильмов?',""),
+         b = prompt('На сколько оцените его?',"");
+   
+         if(a != null && b != null && a != '' && b != '' && a.length < 50){
+            personalMovieDB.movies[a] = b;
+            console.log('done');
+         }else{
+            console.log('error');
+            i--;
+         }
+   }
+   }
+
+   rememberMyFilms();
+
+
+function detectPersonalLevel(){
+if(personalMovieDB.count < 10){
+   console.log('Просмотренно довольно мало фильмов');
+}else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30){
+   console.log('Вы классический зритель')
+}else if (personalMovieDB.count >= 30){
+   console.log('Вы киноман');
+}else {
+   console.log("Произошла ошибка")
+}
+
+}
+
+detectPersonalLevel();
+
+console.log(personalMovieDB)
