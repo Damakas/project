@@ -1,74 +1,41 @@
 'use strict'
 
-let numbersOfFilms;
 
-function start(){
- numbersOfFilms = +prompt('Сколько фильмов вы уже просмотрели?',"");
-
- while (numbersOfFilms == '' || numbersOfFilms == null || isNaN(numbersOfFilms)){
-      numbersOfFilms = +prompt('Сколько фильмов вы уже просмотрели?',"");
- }
-}
-
-start();
-
-const personalMovieDB = {
-       count: numbersOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false
-};
-
-
-// writeYourGenres();
-
-
-   function rememberMyFilms(){
-for(let i = 0; i < 2; i++){
-   const a = prompt('Один из последних просмотренных фильмов?',""),
-         b = prompt('На сколько оцените его?',"");
-   
-         if(a != null && b != null && a != '' && b != '' && a.length < 50){
-            personalMovieDB.movies[a] = b;
-            console.log('done');
-         }else{
-            console.log('error');
-            i--;
-         }
+function calculatedVolumeAndArea(a){
+   let volumeCube = 1;
+   let areaCube = 0;
+   for(let i = 0; i < 3; i++){
+      volumeCube *= a;
    }
+   let aSquared = 1;
+   for(let j = 0; j < 2; j++){
+      aSquared *= a;
    }
-
-   // rememberMyFilms();
-
-
-function detectPersonalLevel(){
-if(personalMovieDB.count < 10){
-   console.log('Просмотренно довольно мало фильмов');
-}else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30){
-   console.log('Вы классический зритель')
-}else if (personalMovieDB.count >= 30){
-   console.log('Вы киноман');
-}else {
-   console.log("Произошла ошибка")
-}
-
-}
-
-// detectPersonalLevel();
-
-function showMyDB(hidden){
-  if(!hidden){
-console.log(personalMovieDB);
+   areaCube = 6 * aSquared;
+if(isNaN(a) || a < 0 || !Number.isInteger(a)) {
+   return "При вычислении произошла ошибка"
+}else{
+  return `Объем куба: ${volumeCube}, площадь всей поверхности: ${areaCube}`;
+   }
   }
-}
+console.log(calculatedVolumeAndArea(6))
 
-showMyDB(personalMovieDB.privat)
 
-function writeYourGenres(){
-   for(let i = 1; i <= 3; i++){
-         personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+
+
+function getCouperNumber(num){
+   if (isNaN(num) || num < 0 || !Number.isInteger(num)){
+      return "Ошибка.Проверьте правильность введенного номера места";
+   } 
+   
+  if(num === 0 || num > 36 ){
+      return "Таких мест в вагоне не существует";
    }
+return Math.ceil(num /4 )
 }
+console.log(getCouperNumber('Hello'))
 
-writeYourGenres();
+
+
+
+
