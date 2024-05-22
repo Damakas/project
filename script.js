@@ -1,52 +1,26 @@
 'use strict'
 
-function getTimeFromMinutes(minutes){
-    
-if(typeof(minutes) !== 'number' || !Number.isInteger(minutes) || minutes < 0){
-    return 'Ошибка,проверьте данные'
-}
+function fib(num){
+    if(typeof(num) !== 'number' || num < 0 || !Number.isInteger(num)){
+        return '';
+    }
+let result = '';
+let first = 0;
+let second = 1;
 
-const hours = Math.floor(minutes / 60);
-const remainingMinutes = minutes % 60;
-
-let hoursStr = '';
-
-switch (hours){
-    case 0:
-        hoursStr = 'часов';
-        break;
-    case 1:
-        hoursStr = 'час';
-            break;
-    case 2:
-    case 3:
-    case 4:
-                hoursStr = 'часа';
-                break;
-            default:
-                    hoursStr = 'часов';
+for (let i = 0; i < num; i++){
+    if(i + 1 === num){
+        result += `${first}`;
+    }else{
+        result += `${first} `;
     }
 
-
-
-return `Это ${hours} ${hoursStr}  и ${remainingMinutes} минут`
+    let third = first + second;
+    first = second;
+    second = third;
 }
-
-
-console.log(getTimeFromMinutes(580))
-
-
-function findMaxNumber(x,y,j,k){
-    if(typeof(x) !== 'number' ||
-       typeof(y) !== 'number' ||
-       typeof(j) !== 'number' ||
-       typeof(k) !== 'number'){
-        return 0;
-       }else{
-return console.log(Math.max(x,y,j,k));
+return result;
 }
-}
-findMaxNumber(1, 5, 6.6, 11);
-findMaxNumber(1, 5, '6', '10')
+console.log(fib(20))
 
 
