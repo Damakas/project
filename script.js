@@ -1,26 +1,18 @@
 'use strict'
 
-function fib(num){
-    if(typeof(num) !== 'number' || num < 0 || !Number.isInteger(num)){
-        return '';
-    }
-let result = '';
-let first = 0;
-let second = 1;
+// Возводит в степенень каждую цифру числа аргумента "num"  и возвращает число 
 
-for (let i = 0; i < num; i++){
-    if(i + 1 === num){
-        result += `${first}`;
-    }else{
-        result += `${first} `;
-    }
+function squareDigits(num){
+if(typeof(num) !== 'number' || !Number.isInteger(num) || num < 0){
+return 0;
+}
+return String(num)
+.split('')
+.map(digit => Math.pow(parseInt(digit), 2))
+.join('');
+}
+console.log(squareDigits(765));
 
-    let third = first + second;
-    first = second;
-    second = third;
-}
-return result;
-}
-console.log(fib(20))
+
 
 
