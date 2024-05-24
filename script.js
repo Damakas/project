@@ -1,52 +1,47 @@
 'use strict'
 
-const options = {
-name: 'test',
-width: 1024,
-height: 1024,
-colors: {
-  border: 'black',
-  bg: 'red'
-},
-makeTest: function(){
-  console.log('Test')
+
+
+//Метод сортировки sort() и пример как сортировать элементы в виде чисел массива 
+const arr = [ 2, 13, 26, 8, 10];
+arr.sort(compareNum);
+console.log(arr)
+
+function compareNum(a, b){
+  return a - b;
 }
-};
 
-options.makeTest();
-
-//Декструктуризация объекта
-const{border, bg} = options.colors;
-console.log(border)
+//Как работает свойства length с массивом
+arr[99] = 0;
+console.log(arr.length)
+console.log(arr)
 
 
-//Преобразуем объект в массив с помощью метоба Object.keys() и подсчитывает количество ключей в объекте с помощью свойства length
-console.log(Object.keys(options).length)
+//Метод forEach позволяет перебирать элементы массива и изменять их с помощью функции обратного вызова
+arr.forEach(function(item, i, arr){
+console.log(`${i}: ${item} внутри массива ${arr}`)
+})
 
-//Как обратится к объекту внутри объекта и вернуть значение
-console.log(options['colors']['border'])
-
-//Оператора delete удаляет элемент из объекта
-
-delete options.name;
-console.log(options);
+//Удаляет последний элемент из массива
+arr.pop();
 
 
-//Перебираем объкет с помощью цикла for in
-//В переменной counter подсчитываем количество ключей в объекте
+//Добавляет элемент в конец массива
+// arr.push(10);
+// console.log(arr) //Выведет [1, 2, 3, 6, 8, 10]
 
-let counter = 0;
-
-for(let key in options){
-  if(typeof(options[key]) === 'object'){
-    for(let i in options[key]){
-      console.log(`Свойство ${i} имеет значение ${options[key][i]} `)
-      counter++;
-    }
-  }else{
-console.log(`Свойство ${key} имеет значение ${options[key]} `);
-counter++;
-  }
-  
+//Первый способ перебора элементов массива
+for(let i = 0; i < arr.length; i++){
+  console.log(arr[i]);
 }
-console.log(counter)
+
+//Второй способ перебора элемнтов массива с помощью цикла for of
+for(let value of arr) {
+console.log(value)
+}
+
+//Пример работы с методом split() который разделяет строки на подстроки и метод join() который объеденяет элементы массива с строку
+const str = prompt('', '');
+const products = str.split(', ');
+products.sort();
+console.log(products.join('; '));
