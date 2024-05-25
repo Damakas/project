@@ -1,68 +1,39 @@
 'use strict'
 
-const personalPlanPeter = {
-    name: "Peter",
-    age: "29",
-    skills: {
-        languages: ['ru', 'eng'],
-        programmingLangs: {
-            js: '20%',
-            php: '10%'
-        },
-        exp: '1 month'
-    },
+const family = ['Peter', 'Ann', 'Alex', 'Linda'];
 
-    //Решения мастера
-    showAgeAndLangs: function(plan){
-        const {age} = plan;
-        const {languages} = plan.skills;
-        let str = `Мне ${age} и я владею языками `;
-        languages.forEach(function(lang){
-            str +=`${lang.toUpperCase()}`;
-        });
-        return str;
+//1) Напишите функцию showFamily, которая будет принимать в себя массив строк и возвращать сообщение в нужном формате.
+
+// showFamily(family)  => 'Семья состоит из: Peter Ann Alex Linda'
+
+// Имена подставляются автоматически из массива. Если массив пустой, то выводится сообщение 'Семья пуста'
+
+function showFamily(arr) {
+    let str = 'Семья состоит из: ';
+    if(arr.length === 0 ){
+        return 'Семья пуста'
+    }else{
+   return str += arr.join(' ');
     }
-    // Мое решение
-    // showAgeAndLangs: function(personalPlanPeter){
-    //     let result = '';
-    //     const {skills} = personalPlanPeter;
-    //     const {languages} = skills;
-    //    languages.forEach((element,index,array) =>{
-    //     array[index] = element.toUpperCase();
-    //    })
-    //         result +=`Мне ${personalPlanPeter.age} и я владею языками ${languages}`
-    //        return result;    
-    // }     
-
-    
-};
-
-console.log(personalPlanPeter.showAgeAndLangs(personalPlanPeter));
-
-
-
-//Напишите функцию showExperience, которая будет принимать в себя объект со всеми данными и возвращать строку с опытом.
-function showExperience(personalPlanPeter) {
-const {skills} = personalPlanPeter;
-const {exp} = skills;
-return exp;
 }
-console.log(showExperience(personalPlanPeter));
+console.log(showFamily(family));
 
 
-// Напишите функцию showProgrammingLangs, которая будет принимать в себя объект со всеми данными и возвращать строку в нужном виде.
-//Пример:
-// showProgrammingLangs(personalPlanPeter)  => "Язык js изучен на 20% Язык php изучен на 10%"
-// Причем функция должна работать вне зависимости от количества языков. Если ни один не указан, то возвращается пустая строка.
-function showProgrammingLangs(personalPlanPeter) {
-const {skills} = personalPlanPeter;
-const {programmingLangs} = skills;
-let result = '';
-for(let key in programmingLangs){
-     result += `Язык ${key} изучен на ${programmingLangs[key]}\n`;
+// напишите функцию standardizeStrings, которая будет принимать в себя массив строк и будет выводить в консоль эти строки в нижнем регистре.
+
+// Пример:
+
+// standardizeStrings(favoriteCities)  выведет в консоль
+
+// lisbon
+// rome
+// milan
+// dublin
+
+const favoriteCities = ['liSBon', 'ROME', 'miLan', 'Dublin'];
+
+function standardizeStrings(arr) {
+    let result = arr.map(item => item.toLowerCase());
+        return console.log(result.join('\n'));
 }
-return result;
-}
-console.log(showProgrammingLangs(personalPlanPeter));
-
-
+standardizeStrings( favoriteCities);
