@@ -1,66 +1,56 @@
 'use strict'
 
-// Задача:
+//Динамическая типизация
 
-// У вас есть список учеников, которые хотят поиграть в игру:
+//To String
 
-// const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
-// Но команд может быть только 3 по 3 человека. Напишите функцию sortStudentsByGroups, которая принимает в себя массив строк.
+// 1)
+console.log(typeof(String(null)))
+console.log(typeof(String(4)))
 
-// Внутри она сначала сортирует имена по алфавиту. Затем распределяет учеников по 3 человека в 3 группы по алфавитному порядку. Эти группы должны быть массивами. Как итог, функция возвращает новый массив с тремя командами и строкой как 4й элемент.
+// 2)Конкатенация(Сложение строк с чем то,для получения строки)Если что ли бо сложить с строкой,то равно всегда будет строкой
+console.log(typeof(5 + ''))
 
-// Пример:
+const num = 5;
 
-// sortStudentsByGroups(students)  =>
+console.log('https://vk.com/catalog/' + num)
 
-// [
-//   [ 'Andrew', 'Ann', 'Bernard' ],
-//   [ 'Cris', 'Josh', 'Mark' ],
-//   [ 'Peter', 'Sam', 'Sandra' ],
-//   'Оставшиеся студенты: Takesi'
-// ]
-// Если убрать одно студента из списка, то результат будет:
+const fontSize = 26 + 'px';
 
-// [
-//   [ 'Andrew', 'Ann', 'Bernard' ],
-//   [ 'Cris', 'Josh', 'Mark' ],
-//   [ 'Peter', 'Sam', 'Sandra' ],
-//   'Оставшиеся студенты: -'
-// ]
-// А если добавить одного, то:
+//To Number
 
-// [
-//   [ 'Andrew', 'Ann', 'Bernard' ],
-//   [ 'Cris', 'Josh', 'Mark' ],
-//   [ 'Peter', 'Sam', 'Sandra' ],
-//   'Оставшиеся студенты: Takesi, Somebody'
-// ]
-// То есть, меняется содержимое строки. Все оставшиеся ученики попадают туда.
+// 1)
+console.log(typeof(Number('4')));
+
+// 2)
+console.log(typeof(+'5'))
+
+// 3) 
+console.log(typeof(parseInt('15px', 10)));
 
 
+let answer = +prompt('Hello', '');
 
+// To boolean
 
-const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
+//Всегда будет False
+0,'', null, undefined, NaN 
 
-function sortStudentsByGroups(arr) {
-arr.sort();
-const a = [];
-const b = [];
-const c = [];
-const rest = [];
-for(let i = 0; i < arr.length ; i++){
-    if(i < 3 ){
-        a.push(arr[i])
-    }else if(i < 6){
-        b.push(arr[i])
-    }else if(i < 9){
-        c.push(arr[i])
-    }else{
-        rest.push(arr[i])
-    }
-}
-return [a,b,c, `Оставшиеся студенты: ${rest.length === 0 ? '-' : rest.join(', ')}`]
-}
-console.log(sortStudentsByGroups(students));
+// 1.
+ let switcher = null;
 
+ if(switcher){
+    console.log('Working...')
+ }
 
+switcher = 1;
+
+ if(switcher){
+    console.log('Working...')
+ }
+
+ // 2.
+console.log(typeof(Boolean('4')));
+
+// 3.
+console.log(typeof((!!'44444')));
