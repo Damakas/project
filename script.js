@@ -1,56 +1,11 @@
 'use strict'
 
-//Динамическая типизация
-
-//To String
-
-// 1)
-console.log(typeof(String(null)))
-console.log(typeof(String(4)))
-
-// 2)Конкатенация(Сложение строк с чем то,для получения строки)Если что ли бо сложить с строкой,то равно всегда будет строкой
-console.log(typeof(5 + ''))
-
-const num = 5;
-
-console.log('https://vk.com/catalog/' + num)
-
-const fontSize = 26 + 'px';
-
-//To Number
-
-// 1)
-console.log(typeof(Number('4')));
-
-// 2)
-console.log(typeof(+'5'))
-
-// 3) 
-console.log(typeof(parseInt('15px', 10)));
-
-
-let answer = +prompt('Hello', '');
-
-// To boolean
-
-//Всегда будет False
-0,'', null, undefined, NaN 
-
-// 1.
- let switcher = null;
-
- if(switcher){
-    console.log('Working...')
- }
-
-switcher = 1;
-
- if(switcher){
-    console.log('Working...')
- }
-
- // 2.
-console.log(typeof(Boolean('4')));
-
-// 3.
-console.log(typeof((!!'44444')));
+function paperwork(n, m) {
+  let result = n * m;
+  if(n < 0 || m < 0){
+   return result = 0;
+  }else{
+    return result
+  }
+}
+console.log(paperwork(5,5))

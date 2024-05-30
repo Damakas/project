@@ -12,3 +12,7 @@ div{
 div h1{
     padding-bottom: 50px;
 }
+.li_size li,h1{
+    text-align: left;
+    font-size: 40px;
+}
