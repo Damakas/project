@@ -23,23 +23,30 @@ const movieDB = {
         "Скотт Пилигрим против...",
     ]
 };
- const removeAd = document.querySelectorAll('.promo__adv');
- removeAd.forEach(item => {
+
+const adv = document.querySelectorAll('.promo__adv img'),
+      poster = document.querySelector('.promo__bg'),    
+      genre =  poster.querySelector('.promo__genre'),
+      movieList = document.querySelector('.promo__interactive-list'),
+      menuList = document.querySelector('.promo__menu-list');
+
+adv.forEach(item =>{
     item.remove();
-    });
-    const promoGenre = document.querySelector('.promo__genre');
-          promoGenre.textContent = 'Драма';
-    const promoBg = document.querySelector('.promo__bg');
-          promoBg.style.backgroundImage = 'url(	file:///d%3A/project/DOM_parctice/img/bg.jpg)';
-    const watchedMovies = document.querySelector('.promo__interactive-list');
-    const {movies} = movieDB;    
-        movies.sort();
-        watchedMovies.innerHTML = '';
-        movies.forEach((item,index) =>{
-            const li = document.createElement('li');
-            li.textContent = `${index + 1}: ${item}`
-            watchedMovies.append(li)
-            li.classList.add('promo__interactive-item')
-        });
-       
-       
+});
+
+genre.textContent = 'драма';
+
+poster.style.backgroundImage = 'url(file:///d%3A/project/DOM_parctice/img/bg.jpg)';
+
+movieList.innerHTML = '';
+
+movieDB.movies.sort();
+
+movieDB.movies.forEach((film,i) =>{
+    movieList.innerHTML += `
+    <li class="promo__interactive-item">${i + 1}: ${film}
+                            <div class="delete"></div>
+    `;
+});
+
+
