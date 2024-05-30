@@ -1,11 +1,38 @@
 'use strict'
 
-function paperwork(n, m) {
-  let result = n * m;
-  if(n < 0 || m < 0){
-   return result = 0;
-  }else{
-    return result
-  }
+const btns = document.querySelectorAll('button'),
+      overlay = document.querySelector('.overlay')
+// btn.onclick = function() {
+//   alert('Click')
+// };
+
+// btn.onclick = function() {
+//   alert('Second Click')
+// };
+
+// let i = 0;
+const deleteElement = (e) => {
+    console.log(e.currentTarget);
+    console.log(e.type)
 }
-console.log(paperwork(5,5))
+    // i++;
+    // if(i == 1) {
+    //   btn.removeEventListener('click', deleteElement)
+//     }
+// };
+
+// Метод addEventListener который вызвает событие по определенным условиям
+// btn.addEventListener('click', deleteElement);
+// overlay.addEventListener('click', deleteElement)
+
+btns.forEach(btn => {
+  btn.addEventListener('click', deleteElement)
+});
+
+const link = document.querySelector('a');
+link.addEventListener('click', (event) =>{
+event.preventDefault();
+
+console.log(event.target)
+});
+
