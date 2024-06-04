@@ -1,95 +1,86 @@
 'use strict'
 
-// Задание 1: Получение элементов
-// Получить элемент по ID
+// Задание 5: Стили и классы
+// Добавление и удаление классов
 
-// Найди элемент с ID header и измени его текст на "Hello, World!".
-// Получить элементы по классу
+// Найди элемент с ID toggle и переключай класс active при каждом клике.
+// Изменение стилей
 
-// Найди все элементы с классом item и измени их цвет текста на синий.
-// Получить элементы по тегу
+// Найди все элементы с классом box и сделай их ширину и высоту равными 100px, а цвет фона — зеленым.
+// Задание 6: Создание и вставка элементов
+// Создание списка
 
-// Найди все <p> элементы и добавь к их тексту восклицательный знак.
-// Задание 2: Манипуляция элементами
-// Добавить новый элемент
+// Создай пустой список <ul> и добавь в него 5 элементов <li> с текстом "Элемент 1", "Элемент 2", и т.д.
+// Вставка элемента в определенное место
 
-// Создай новый <div> элемент, добавь ему текст "Новый элемент" и вставь его в конец тела документа.
-// Удалить элемент
+// Найди элемент с ID reference и вставь перед ним новый <p> элемент с текстом "Новый параграф".
+// Задание 7: Навигация по DOM (продолжение)
+// Найти первого и последнего потомка
 
-// Найди элемент с классом remove-me и удали его из DOM.
-// Изменить атрибуты элемента
+// Найди элемент с ID list и измени текст его первого и последнего дочерних элементов.
+// Получить всех потомков определенного типа
 
-// Найди элемент с ID link и измени его атрибут href на "https://www.example.com".
-// Задание 3: Навигация по DOM
-// Найти родительский элемент
+// Найди элемент с классом container и получи все его дочерние <span> элементы, изменив их цвет текста на красный.
+// Задание 8: Обработка событий (продолжение)
+// Двойной клик
 
-// Найди элемент с классом child и получи его родительский элемент, изменив его фон на серый.
-// Найти дочерние элементы
+// Добавь элемент с текстом "Дважды кликни меня". При двойном клике на этот элемент изменяй его цвет текста на оранжевый.
+// Наведение мыши
 
-// Найди элемент с ID container и получи все его дочерние элементы, изменив их шрифт на курсив.
-// Найти следующий и предыдущий элемент
+// Создай элемент, который при наведении мыши меняет цвет фона на желтый, а при убирании мыши — возвращает его обратно
 
-// Найди элемент с классом current и измени цвет текста его следующего и предыдущего соседних элементов.
-// Задание 4: События
-// Добавить обработчик события
+const toggleEle = document.querySelector('#toggle'),
+      boxEle = document.querySelectorAll('.box'),
+      ulEle = document.createElement('ul'),
+      referenceEle = document.querySelector('#reference'),
+      listEle = document.querySelector('#list'),
+      containerEle = document.querySelector('.container'),
+      dblClick = document.querySelector('#double-click'),
+      hoverEle = document.querySelector('#hover-element')
 
-// Добавь кнопку с текстом "Нажми меня". Когда на нее нажимают, пусть она показывает alert с текстом "Кнопка нажата!".
-// Удалить обработчик события
+toggleEle.addEventListener('click', () => {
+  toggleEle.classList.toggle('active')
+});
 
-// Создай кнопку, которая при клике изменяет свой текст на "Кликнут". Добавь еще одну кнопку, которая удаляет обработчик события у первой кнопки.
+boxEle.forEach(item => {
+  item.style.cssText = 'width: 100px; background-color:green; height: 100px';
+});
+
+for(let i = 1; i <= 5; i++){
+  const li = document.createElement('li');
+  li.innerHTML = `Элемент ${i}`;
+  ulEle.append(li)
+}
+document.body.append(ulEle);
+
+const pEle = document.createElement('p');
+pEle.innerHTML = 'Новый параграф';
+referenceEle.before(pEle);
+
+listEle.firstElementChild.innerHTML = 'Первый элемент';
+listEle.lastElementChild.innerHTML = 'Последений элемент';
+
+let spanContainer = containerEle.children;
+
+for(let child of spanContainer){
+  child.style.color = 'red';
+};
+
+dblClick.addEventListener('dblclick', () => {
+  dblClick.style.color = 'orange';
+});
+
+hoverEle.addEventListener('mouseover', (event) => {
+  hoverEle.style.backgroundColor = 'yellow';
+});
+
+hoverEle.addEventListener('mouseout', () => {
+  hoverEle.style.backgroundColor = '';
+});
 
 
-const header = document.querySelectorAll('#header'),
-      classItem = document.querySelectorAll('.item'),
-      pItem = document.querySelectorAll('p'),
-      removeEle = document.querySelectorAll('.remove-me'),
-      linkEle = document.querySelector('#link'),
-      childEle = document.querySelector('.child'),
-      containerEle = document.querySelector('#container'),
-      currentEle = document.querySelector('.current'),
-      alertButton = document.querySelector('#alert-button'),
-      changeButton = document.querySelector('#change-button'),
-      removeButton = document.querySelector('#remove-handler-button');
 
-      for(let target of pItem){
-        target.textContent += '!';
-      };
 
-    
-    let newDiv = document.createElement('div');
-      newDiv.textContent = 'Новый элемент';
-      document.body.append(newDiv);
- 
-      removeEle.forEach(item => {
-        item.remove();
-      });
-
-      linkEle.setAttribute('href', 'https://www.example.com');
-
-      const parenChild = childEle.parentElement;
-      parenChild.style.backgroundColor = 'gray';
-
-      const containerChild = containerEle.children;
-    Array.from(containerChild).forEach(item => {
-      item.style.fontStyle = 'italic';
-    });
-
-    const nextCurrent = currentEle.nextElementSibling;
-    const previousCurrent = currentEle.previousElementSibling;
-    nextCurrent.style.color = 'red';
-    previousCurrent.style.color = 'green';
-
-    alertButton.addEventListener('click', () => {
-      alert('Кнопка нажата')
-    });
-
-    changeButton.addEventListener('click', () => {
-      changeButton.textContent = 'Кликнут';
-    });
-
-    removeButton.addEventListener('click', () => {
-      alertButton.remove();
-    })
 
 
      
