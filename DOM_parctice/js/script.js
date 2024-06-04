@@ -1,3 +1,5 @@
+'use strict';
+
 /* Задания на урок:
 
 1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
@@ -17,7 +19,6 @@ P.S. Здесь есть несколько вариантов решения з
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
 const movieDB = {
     movies: [
         "Логан",
@@ -28,95 +29,94 @@ const movieDB = {
     ]
 };
 
+  
+
+
 const adv = document.querySelectorAll('.promo__adv img'),
       poster = document.querySelector('.promo__bg'),    
       genre =  poster.querySelector('.promo__genre'),
       movieList = document.querySelector('.promo__interactive-list'),
+      menuList = document.querySelector('.promo__menu-list'),
       addForm = document.querySelector('form.add'),
       addInput = addForm.querySelector('.adding__input'),
       checkbox = addForm.querySelector('[type="checkbox"]');
+
 
       addForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
         let newFilm = addInput.value;
-        const favorite = checkbox.checked;
+        let favorite = checkbox.checked;
+if(newFilm){
 
-        if(newFilm) {
+        if(newFilm.length > 21) {
+            newFilm = `${newFilm.slice(0, 22)}...`
+        };
 
-            if(newFilm.length > 21){
-                newFilm = `${newFilm.substring(0, 22)}...`;
-            }
-
-            if(favorite){
-                console.log('Добавляем любимый фильм')
-            }
-
-        movieDB.movies.push(newFilm);
-        sortArray(movieDB.movies);
-
-        createMovieList(movieDB.movies, movieList);
+        if(favorite) {
+            console.log('Добавляем любимый фильм')
         }
+
+            movieDB.movies.push(newFilm);
+            sortArray(movieDB.movies);
+    createMovieList(movieDB.movies,movieList);
+    
+}
+
+event.target.reset();
+            
+           
+      });
 
       
 
-        event.target.reset();
-
+      function addRemove(target){
+        target.forEach(item => {
+        item.remove();
       });
-
-const deleteAdv = (arr) => {
-arr.forEach(item =>{
-    item.remove();
-    });
+      };
+      
+function promoChanges(genrePromo,posterPromo){
+  genrePromo.textContent = 'Драма';          
+      
+posterPromo.style.backgroundImage = 'url(file:///d%3A/project/DOM_parctice/img/bg.jpg)';
 };
 
 
-const makeChanges  = (promoGenre, promoPoster) => {
-    promoGenre.textContent = 'драма';
-
-    promoPoster.style.backgroundImage = 'url(file:///d%3A/project/DOM_parctice/img/bg.jpg)';
-};
-
-
-const sortArray = (arr) => {
-arr.sort();
+function sortArray(target){
+ target.sort();
 }
+         
 
+function createMovieList(film, parent) {
+parent.innerHTML = '';
 
+sortArray(movieDB.movies);
 
-
-
-function createMovieList(films,parent) {
-    parent.innerHTML = '';
-
-    sortArray(films);
-
-    films.forEach((film,i) =>{
-        parent.innerHTML += `
-    <li class="promo__interactive-item">${i + 1}: ${film}
+         film.forEach((item,i) => {
+                       parent.innerHTML += `
+            <li class="promo__interactive-item">${i + 1}: ${item}
                             <div class="delete"></div>
-    `;
-    });
+                        </li>`
+          });
 
-    document.querySelectorAll('.delete').forEach((btn, i) => {
-        btn.addEventListener('click', () => {
-            btn.parentElement.remove();
-            movieDB.movies.splice(i, 1)
+          document.querySelectorAll('.delete').forEach((item, i) => {
+            item.addEventListener('click', () =>{
+                item.parentElement.remove();
+                movieDB.movies.splice(i, 1)
 
-            createMovieList(films, parent);
-        });
-    });
-
+                createMovieList(film, parent)
+            });
+          });
 }
 
-deleteAdv(adv);
-makeChanges(genre,poster);
-createMovieList(movieDB.movies, movieList)
-
-});
+         
 
 
-
+addRemove(adv);
+promoChanges(genre,poster);
+sortArray(movieDB.movies);
+createMovieList(movieDB.movies,movieList);
 
 
 
