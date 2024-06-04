@@ -1,67 +1,42 @@
 'use strict'
 
-  //Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.
+// touchstart Срабатывает при возникновении касания к элементу
+// touchmove Если палец начинает двигаться при касании
+// touchend Когда палец открывается от элемента
+// touchenter Срабатывает когда ведем пальцем по экрану и он проходит элемент на который повешено это событие
+// touchleave Когда палец ушел за пределы элемента  
+// touchcancel Возникает тогда,когда точка соприкосновения не регистрируется на поверхности
 
-// //Решение с использованием цикла
-// function cycleSum(x){
-// let result = 0;
-
-//   for(let i = 1; i <= x; i++){
-//    result += i
-//   }
-//   return result;
-// }
-// console.log(cycleSum(100))
+window.addEventListener('DOMContentLoaded', () => {
+const box = document.querySelector('.box');
 
 
-// //Решение с использованием рекурсии
-// function sumTo(n){
-//   if( n === 1) {
-//     return 1;
-//   }else {
-//     return n + sumTo(n - 1);
-//   }
-// };
+box.addEventListener('touchstart', (e) => {
+ e.preventDefault;
 
-// console.log(sumTo(100))
+  console.log('start')
+  console.log(e.touches)
+  console.log(e.targetTouches)
+  });
 
 
+  box.addEventListener('touchmove', (e) => {
+e.preventDefault;
 
-// Последовательность чисел Фибоначчи определяется формулой Fn = Fn-1 + Fn-2. То есть, следующее число получается как сумма двух предыдущих.
+console.log(e.targetTouches[0].pageX)
+});
 
-// Первые два числа равны 1, затем 2(1+1), затем 3(1+2), 5(2+3) и так далее: 1, 1, 2, 3, 5, 8, 13, 21....
 
-// Числа Фибоначчи тесно связаны с золотым сечением и множеством природных явлений вокруг нас.
+// box.addEventListener('touchend', (e) => {
+// e.preventDefault;
 
-// Напишите функцию fib(n) которая возвращает n-е число Фибоначчи.
+// console.log('end')
+// })
+});
 
-// function fib(n) {
-//   return n <= 1 ? n : fib(n - 1) + fib(n - 2);
-//  }
-//  console.log(fib(50))
 
-let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null
-      }
-    }
-  }
-};
+// Главные свойста работы с сенсорными экранами
 
-function printList(list) {
-
-  console.log(list.value); // выводим текущий элемент
-
-  if (list.next) {
-    printList(list.next); // делаем то же самое для остальной части списка
-  }
-
-}
-
-printList(list);
+// touches Свойство выдает список всех пальцев котоорые взаимодействуют с экраном
+// targetTouches Если нас итересует количество пальцев которые взаимодействуют с конкретным элементом
+// changedTouches список пальцев которые учавствуют в текущем событии
