@@ -1,42 +1,78 @@
-'use strict'
+'use strict';
 
-// touchstart Срабатывает при возникновении касания к элементу
-// touchmove Если палец начинает двигаться при касании
-// touchend Когда палец открывается от элемента
-// touchenter Срабатывает когда ведем пальцем по экрану и он проходит элемент на который повешено это событие
-// touchleave Когда палец ушел за пределы элемента  
-// touchcancel Возникает тогда,когда точка соприкосновения не регистрируется на поверхности
+const btns = document.querySelectorAll('button'),
+      wrapper = document.querySelector('.btn-block');
 
-window.addEventListener('DOMContentLoaded', () => {
-const box = document.querySelector('.box');
+// Измеряет количество классов в эелементе
+console.log(btns[0].classList.length); 
 
+// Возвращает класс эелемента 
+console.log(btns[0].classList.item(1));
 
-box.addEventListener('touchstart', (e) => {
- e.preventDefault;
+// Добавляет класс к элементу,можно записывать много классов через запятую
+console.log(btns[1].classList.add('red')); 
 
-  console.log('start')
-  console.log(e.touches)
-  console.log(e.targetTouches)
-  });
+// Удаляет класс из элемента
+console.log(btns[0].classList.remove('blue')); 
 
+// Позволяет добавлять класс к элементу если у него его нет,если есть,то это свойство удаляет класс
+console.log(btns[0].classList.toggle('blue')); 
 
-  box.addEventListener('touchmove', (e) => {
-e.preventDefault;
+// Перебирает классы элемента
+if (btns[1].classList.contains('red')){
+    console.log('red')
+}
 
-console.log(e.targetTouches[0].pageX)
+btns[0].addEventListener('click', () => {
+// if(!btns[1].classList.contains('red')){
+//     btns[1].classList.add('red');
+// }else {
+//     btns[1].classList.remove('red');
+// }
+
+btns[1].classList.toggle('red');
 });
 
 
-// box.addEventListener('touchend', (e) => {
-// e.preventDefault;
 
-// console.log('end')
-// })
-});
+// Делегирование событий
 
 
-// Главные свойста работы с сенсорными экранами
+// С помощью класса
 
-// touches Свойство выдает список всех пальцев котоорые взаимодействуют с экраном
-// targetTouches Если нас итересует количество пальцев которые взаимодействуют с конкретным элементом
-// changedTouches список пальцев которые учавствуют в текущем событии
+wrapper.addEventListener('click', (event) => {
+       if(event.target && event.target.classList.contains('blue')) {
+                console.log('Hello');
+           }
+        });
+
+
+// С помощью тега
+        
+        wrapper.addEventListener('click', (event) => {
+           if(event.target && event.target.tagName == 'BUTTON') {
+                console.log('Hello');
+           }
+        });
+
+
+        // С помощью метода сравнения matches 
+
+         wrapper.addEventListener('click', (event) => {
+           if(event.target && event.target.matches('button.red')) {
+                console.log('Hello');
+           }
+        });
+
+
+        // Сравнение делегирования событий с forEach 
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                console.log('Hello')
+            })
+        })
+
+        const btn = document.createElement('button');
+        btn.classList.add('red');
+        wrapper.append(btn);
