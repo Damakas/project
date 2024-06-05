@@ -1,78 +1,71 @@
 'use strict';
 
-const btns = document.querySelectorAll('button'),
-      wrapper = document.querySelector('.btn-block');
+// После фигурных скобок вписывается время паузы перед объявлением.
+// Через запятую можно записать что либо в качестве аргумента функции
+const timerId = setTimeout(function(text) {
+    console.log(text);
+}, 2000, 'Hello');
 
-// Измеряет количество классов в эелементе
-console.log(btns[0].classList.length); 
 
-// Возвращает класс эелемента 
-console.log(btns[0].classList.item(1));
+// Функцию можно добавлять как аргумент в метод setTimeout
+const timerId = setTimeout(logger, 2000);
 
-// Добавляет класс к элементу,можно записывать много классов через запятую
-console.log(btns[1].classList.add('red')); 
-
-// Удаляет класс из элемента
-console.log(btns[0].classList.remove('blue')); 
-
-// Позволяет добавлять класс к элементу если у него его нет,если есть,то это свойство удаляет класс
-console.log(btns[0].classList.toggle('blue')); 
-
-// Перебирает классы элемента
-if (btns[1].classList.contains('red')){
-    console.log('red')
+function logger () {
+    console.log('text')
 }
 
-btns[0].addEventListener('click', () => {
-// if(!btns[1].classList.contains('red')){
-//     btns[1].classList.add('red');
-// }else {
-//     btns[1].classList.remove('red');
-// }
 
-btns[1].classList.toggle('red');
+btn.addEventListener('click', () => {
+    // const timerId = setTimeout(logger, 2000);
+     timerId = setInterval(logger, 500);
 });
 
 
-
-// Делегирование событий
-
-
-// С помощью класса
-
-wrapper.addEventListener('click', (event) => {
-       if(event.target && event.target.classList.contains('blue')) {
-                console.log('Hello');
-           }
-        });
+// Останавливает setTimeout и setInterval
+clearInterval();
 
 
-// С помощью тега
-        
-        wrapper.addEventListener('click', (event) => {
-           if(event.target && event.target.tagName == 'BUTTON') {
-                console.log('Hello');
-           }
-        });
+function logger () {
+    if ( i === 3){
+        clearInterval(timerId);
+    }
+    console.log('text')
+    i++;
+}
 
 
-        // С помощью метода сравнения matches 
 
-         wrapper.addEventListener('click', (event) => {
-           if(event.target && event.target.matches('button.red')) {
-                console.log('Hello');
-           }
-        });
+// Разница между обычным setTimeout и рекурсивным в том,что обычный setTimeout не будет ждать 
+// функцию если функция выполняется дольше таймера setTimeout
+// А рекурсивный setTimeout будет начинать отсчет только после того,как функция закончит свою работу
+
+// Рекурсивный setTimeout
+
+let id = setTimeout(function log() {
+    console.log('Hello');
+    id = setTimeout(log,500)
+}, 500);
 
 
-        // Сравнение делегирования событий с forEach 
+// Как это работает
 
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                console.log('Hello')
-            })
-        })
+const btn = document.querySelector('.btn');
+ let timerId,
+     i = 0;   
 
-        const btn = document.createElement('button');
-        btn.classList.add('red');
-        wrapper.append(btn);
+function myAnimation() {
+    const elem = document.querySelector('.box');
+    let pos = 0;
+
+    const id = setInterval(frame, 10)
+    function frame() {
+        if (pos === 300) {
+            clearInterval(id);
+        }else {
+            pos++;
+            elem.style.top = pos + "px";
+            elem.style.left = pos + "px";
+        }
+    }
+}
+btn.addEventListener('click', myAnimation);
