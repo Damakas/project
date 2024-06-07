@@ -1,71 +1,42 @@
 'use strict';
 
-// После фигурных скобок вписывается время паузы перед объявлением.
-// Через запятую можно записать что либо в качестве аргумента функции
-const timerId = setTimeout(function(text) {
-    console.log(text);
-}, 2000, 'Hello');
+//Передает в консоль дату
+const now = new Date();
+console.log(now)
+
+const now = new Date();
+new Date.parse('2020-05-01');
+
+// Устанавливает нужное время
+console.log(now.setHours(18, 50));
+console.log(now)
+
+// Основные методы Data();
+console.log(now.getFullYear());
+console.log(now.getMonth());
+console.log(now.getDate());
+console.log(now.getDay());
+console.log(now.getHours());
+console.log(now.getSeconds());
+console.log(now.getMilliseconds());
+
+// Получения метода по поясу UTC
+console.log(now.getUTCHours());
+
+// Метод который вычисляет разницу между UTF и UTC
+console.log(now.getTimezoneOffset());
+
+// Метод который вычисляет количество прошедших миллисекунд с 1 января 1970 года
+console.log(now.getTime());
 
 
-// Функцию можно добавлять как аргумент в метод setTimeout
-const timerId = setTimeout(logger, 2000);
+// Как вычислить время вычисления 
+let start = new Date();
 
-function logger () {
-    console.log('text')
+for (let i = 0; i < 10000; i++) {
+    let some = i ** 3;
 }
 
+let end = new Date();
 
-btn.addEventListener('click', () => {
-    // const timerId = setTimeout(logger, 2000);
-     timerId = setInterval(logger, 500);
-});
-
-
-// Останавливает setTimeout и setInterval
-clearInterval();
-
-
-function logger () {
-    if ( i === 3){
-        clearInterval(timerId);
-    }
-    console.log('text')
-    i++;
-}
-
-
-
-// Разница между обычным setTimeout и рекурсивным в том,что обычный setTimeout не будет ждать 
-// функцию если функция выполняется дольше таймера setTimeout
-// А рекурсивный setTimeout будет начинать отсчет только после того,как функция закончит свою работу
-
-// Рекурсивный setTimeout
-
-let id = setTimeout(function log() {
-    console.log('Hello');
-    id = setTimeout(log,500)
-}, 500);
-
-
-// Как это работает
-
-const btn = document.querySelector('.btn');
- let timerId,
-     i = 0;   
-
-function myAnimation() {
-    const elem = document.querySelector('.box');
-    let pos = 0;
-
-    const id = setInterval(frame, 10)
-    function frame() {
-        if (pos === 300) {
-            clearInterval(id);
-        }else {
-            pos++;
-            elem.style.top = pos + "px";
-            elem.style.left = pos + "px";
-        }
-    }
-}
-btn.addEventListener('click', myAnimation);
+alert(`Цикл отработал за ${end - start} миллисекунд`)
