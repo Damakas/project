@@ -1,42 +1,34 @@
 'use strict';
 
-//Передает в консоль дату
-const now = new Date();
-console.log(now)
+// Как узнать размеры элементов на странице 
 
-const now = new Date();
-new Date.parse('2020-05-01');
+const box = document.querySelector('.box'),
+      btn = document.querySelector('button')  
 
-// Устанавливает нужное время
-console.log(now.setHours(18, 50));
-console.log(now)
+const width = box.clientWidth;
+const height = box.clientHeight;
 
-// Основные методы Data();
-console.log(now.getFullYear());
-console.log(now.getMonth());
-console.log(now.getDate());
-console.log(now.getDay());
-console.log(now.getHours());
-console.log(now.getSeconds());
-console.log(now.getMilliseconds());
+const width = box.offsetWidth;
+const height = box.offsetHeight;
 
-// Получения метода по поясу UTC
-console.log(now.getUTCHours());
+const width = box.scrollWidth;
+const height = box.scrollHeight;
+console.log(width, height);
 
-// Метод который вычисляет разницу между UTF и UTC
-console.log(now.getTimezoneOffset());
+btn.addEventListener('click', () => {
+    // box.style.height = box.scrollHeight + 'px';
+    console.log(box.scrollTop);
+});
 
-// Метод который вычисляет количество прошедших миллисекунд с 1 января 1970 года
-console.log(now.getTime());
+//Как узнать кординаты всех элементов на странице
+console.log(box.getBoundingClientRect().top);
 
 
-// Как вычислить время вычисления 
-let start = new Date();
+// Как узнать все стили элемента
+const style = window.getComputedStyle(box);
 
-for (let i = 0; i < 10000; i++) {
-    let some = i ** 3;
-}
+console.log(style.display);
 
-let end = new Date();
+// Фото с разметкой и методами на странице index.html
 
-alert(`Цикл отработал за ${end - start} миллисекунд`)
+

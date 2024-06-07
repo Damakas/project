@@ -1,10 +1,10 @@
-.box {
+/* .box {
   position: absolute;
   width: 100px;
   height: 100px;
   background-color: blue;
-}
-.wrapper {
+} */
+/* .wrapper {
   position: relative;
   width: 400px;
   height: 400px;
@@ -31,4 +31,21 @@ button {
 
 .red {
     background-color: red;
+} */
+
+.box {
+box-sizing: border-box;
+  width: 400px;
+  height: 350px;
+  overflow: scroll;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 10px;
+}
+button {
+  width: 100px;
+  height: 40px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px; 
 }
