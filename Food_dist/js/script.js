@@ -103,4 +103,80 @@ window.addEventListener('DOMContentLoaded', () => {
       }
 
       getTimer('.timer', deadline)
+
+      // Modal
+
+      // Решение учителя
+      const modalTrigger = document.querySelectorAll('[data-modal]'),
+            modal = document.querySelector('.modal'),
+            modalCloseBtn = document.querySelector('[data-close]');
+
+            modalTrigger.forEach(btn => {
+              btn.addEventListener('click', () => {
+              // modal.classList.add('show');
+              // modal.classList.remove('hide');
+              modal.classList.toggle('show')
+              document.body.style.overflow = 'hidden'
+            });
+            });
+
+            function closeModal() {
+            modal.classList.toggle('show')
+            document.body.style.overflow = '';
+            }
+            
+            modalCloseBtn.addEventListener('click', closeModal)
+
+         modal.addEventListener('click', (e) => {
+          if (e.target == modal) {
+            closeModal();
+          }
+         });
+
+         document.addEventListener('keydown', (e) => {
+            if (e.code === 'Escape' && modal.classList.contains('show')) {
+              closeModal();
+            }
+         });
+           
+
+
+
+
+
+
+      // Мое решение
+
+      const modalOpen = document.querySelectorAll('[data-modal]'),
+            modalClose = document.querySelector('[data-close]'),
+            modalWindow = document.querySelector('.modal');
+
+
+
+           modalOpen.forEach(item => {
+            item.addEventListener('click', () => {
+              modalWindow.classList.toggle('show');
+                 document.body.style.overflow = 'hidden';
+            });
+           });
+
+           function closeModal() {
+          modalWindow.classList.toggle('show');
+          document.body.style.overflow = '';
+}
+
+           modalClose.addEventListener('click', closeModal)
+
+           modalWindow.addEventListener('click', (e) => {
+            if (e.target === modalWindow) {
+              closeModal();
+}
+           })
+
+           document.addEventListener('keydown', (e) => {
+            if(e.code === 'Escape' && modalWindow.classList.contains('show')) {
+              closeModal();
+            }
+           })
+    
 });
