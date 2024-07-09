@@ -1,25 +1,40 @@
 'use strict'
 
-function User(name, id) {
-  this.name = name;
-  this.id = id;
-  this.human = true;
-  this.hello = function() {
-    console.log(`Hello ${this.name}`);
+//Синтаксис создания класса
+
+class Rectangle {
+  constructor(height, width) {
+      this.height = height;
+      this.width = width;
+  }
+
+  calcArea() {
+    return this.height * this.width;
   }
 }
 
-User.prototype.exit = function() {
-  console.log(`Пользователь ${this.name} ушел`)
-};
+const square = new Rectangle(10, 10);
+const long = new Rectangle(20, 100);
 
-const ivan = new User('Ivan', 28);
-const alex = new User('Alex', 20);
+console.log(square.calcArea());
+console.log(long.calcArea());
 
-ivan.exit();
+//Наследование класса
 
-ivan.hello();
-alex.hello();
+class ColoredRectangleWidthText extends Rectangle {
+  constructor(height, width, text, bgColor) {
+    super(height, width);
+    this.text = text;
+    this.bgColor = bgColor;
+  }
 
-console.log(ivan);
-console.log(alex)
+  showMyProps() {
+    console.log(`Текст: ${this.text}, цвет: ${this.bgColor}`)
+  }
+}
+
+const div = new ColoredRectangleWidthText(25, 10, 'Hello world', 'red');
+
+div.showMyProps();
+console.log(div.calcArea());
+
