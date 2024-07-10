@@ -1,15 +1,20 @@
 'use strict'
-// Оператор ...rest
 
-const log = function(a, b, ...rest) {
-    console.log(a, b, rest);
-}
+const persone = {
+    name: 'Alex',
+    tel: '+7444444',
+    parents: {
+        mom: 'Olga',
+        dad: 'Mike'
+    }
+};
 
-log('basic', 'rest', 'operator', 'usage');
+// console.log(JSON.stringify(persone)); //Метод который Отправляет данные  для бэкэнда
+// console.log(JSON.parse(JSON.stringify(persone))); // Метод который получает данные от бэкэнда
 
-function calcOrDouble(number, basis = 2) {
-    console.log(number * basis);
-}
-
-calcOrDouble(3,5)
+//Как делается глубокое копирование 
+const clone = JSON.parse(JSON.stringify(persone));
+clone.parents.mom = 'Ann';
+console.log(persone);
+console.log(clone);
 
