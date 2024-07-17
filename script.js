@@ -1,102 +1,29 @@
 'use strict'
 
-const films = [
-    {
-        name: 'Titanic',
-        rating: 9
-    },
-    {
-        name: 'Die hard 5',
-        rating: 5
-    },
-    {
-        name: 'Matrix',
-        rating: 8
-    },
-    {
-        name: 'Some bad film',
-        rating: 4
-    }
+const funds = [
+    { amount: -1400 },
+    { amount: 2400 },
+    { amount: -1000 },
+    { amount: 500 },
+    { amount: 10400 },
+    { amount: -11400 }
 ];
 
-//Мое решение
+const getPositiveIncomeAmount = (data) => {
+    return data.filter(item => item.amount > 0)
+        .map(item => item.amount)
+        .reduce((acc, current) => {
+            return acc + current
+        })
 
-function showGoodFilms(arr) {
-    let ratingFilms = arr.filter(item => item.rating >= 8);
-    return ratingFilms;
-}
+};
 
-function showListOfFilms(arr) {
-    const listFilms = arr.map(item => item.name)
-    listFilms.reduce((acc, current) => {
-        `${acc}, ${current}`
-    })
-    return listFilms
-}
+console.log(getPositiveIncomeAmount(funds))
 
-console.log(showListOfFilms(films))
 
-function setFilmsIds(arr) {
-    return arr.map((film, i) => {
-        film.id = i;
-        return film;
-    });
+const getTotalIncomeAmount = (data) => {
+    return data.some(item => item.amount < 0) ? data.reduce((acc, current) => acc + current.amount, 0) : getPositiveIncomeAmount(data);
 }
 
 
-
-const tranformedArray = setFilmsIds(films);
-
-function checkFilms(arr) {
-    let sortFilm = arr.map(item => {
-        if ('id' in item) {
-            return true
-        } else {
-            return false
-        }
-    })
-
-    return sortFilm
-}
-
-
-console.log(checkFilms(tranformedArray))
-
-
-//Решение учителя
-
-function showGoodFilms(arr) {
-    return arr.filter(film => film.rating >= 8);
-}
-
-function showListOfFilms(arr) {
-    return arr.reduce((acc, curr) => `${typeof (acc) === 'object' ? acc.name : acc}, ${curr.name}`);
-}
-
-showListOfFilms(films);
-
-function setFilmsIds(arr) {
-    return arr.map((film, i) => {
-        film.id = i;
-        return film;
-    });
-}
-
-const tranformedArray = setFilmsIds(films);
-
-// При срабатывании every на первом фильме он натыкается на id = 0;
-// 0 - это неправда в логическом ключе, поэтому и весь метод возвращает false
-// Учитывайте этот момент
-function checkFilms(arr) {
-    return arr.every(film => film.id || film.id === 0 ? true : false)
-}
-
-// Еще короче, так как условие все равне вернет true или false:
-// function checkFilms(arr) {
-//     return arr.every(film => film.id || film.id === 0)
-// }
-
-// Максимально коротко, но еще читаемо:
-// const checkFilms = (arr) => arr.every(film => film.id || film.id === 0)
-
-checkFilms(tranformedArray);
+console.log(getTotalIncomeAmount(funds))
