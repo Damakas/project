@@ -1,48 +1,44 @@
 'use strict'
 
-// localStorage.setItem('number', 5);// Записывает данные в Local storage в виде ключа и его значения как объект
+// new RegExp('pattern', 'flags');
+// /pattern/flags
 
-// // localStorage.removeItem('number') // Удаляет ключ 
-// localStorage.clear(); // Очищает все хранилицще
+// const ans = prompt('Введите ваше число');
 
-// console.log(localStorage.getItem('number'));// Получает данные из Local Storage
+// const reg = /\d/g;
+// console.log(ans.match(reg));
 
-//Меняет цвет в при нажатии на кнопку и сохраняет в localStorage
+const str = 'My name is R2D2';
 
-const checkbox = document.querySelector('#checkbox'),
-    form = document.querySelector('form'),
-    change = document.querySelector('#color');
+console.log(str.match(/\w\d\w\d/i)) // Выведет в консоль R2D2
 
-if (localStorage.getItem('isChecked')) {
-    checkbox.checked = true;
-}
 
-if (localStorage.getItem('bg') === 'changed') {
-    form.style.backgroundColor = 'red';
-}
 
-checkbox.addEventListener('change', () => {
-    localStorage.setItem('isChecked', true);
-});
+//Классы регулярных выражений
 
-change.addEventListener('click', () => {
-    if (localStorage.getItem('bg') === 'changed') {
-        localStorage.removeItem('bg');
-        form.style.backgroundColor = '#fff';
-    } else {
-        localStorage.setItem('bg', 'changed');
-        form.style.backgroundColor = 'red';
-    }
-});
+// \d   Ищет все цифры
+// \w   Ищем все буквы или слова
+// \s   Ищет все пробелы
 
-//Как Сохранить JSON в localStorage
+// Обратные классы
 
-const persone = {
-    name: 'Alex',
-    age: 25
-}
+// D   Ищет не числа
+//W    Ищет не буквы
+//S     Ищет любой не пробельный символ
 
-const seralizedPersone = JSON.stringify(persone);
-localStorage.setItem('alex', seralizedPersone);
 
-console.log(JSON.parse(localStorage.getItem('alex')));
+
+//Флаги
+// i // Если мы хотим что-то найти вне зависимости от регистра
+// g // Когда пытаемся найти сразу несоклько вхождений
+// m // Включает в себя многострочный режим
+
+// console.log(ans.search(reg));
+// console.log(ans.match(reg));
+
+// const pass = prompt('Password');
+
+// console.log(pass.replace(/./g, '*')) //  Все символы введные в pass и появятся в консоли  в виде звездочек
+
+// console.log('12-32-56'.replace(/-/g, ':')); // заменяет дефис на двоеточие 12:32:56
+
