@@ -1,7 +1,10 @@
 
-const myModule = require('./script');
+export let one = 1;
 
-const myModuleInstance = new myModule();
+let two = 2;
 
-myModuleInstance.hello();
-myModuleInstance.goodbye(); 
+export { two };
+
+export default function sayHi() {
+    console.log('Hello');
+}
