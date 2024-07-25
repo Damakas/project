@@ -1,21 +1,28 @@
 'use strict'
 
-const btn = document.querySelector('.btn'),
-    elem = document.querySelector('.box');
-let pos = 0;
+setTimeout(() => {
+    console.log('timeout')
+});
 
-function myAnimation() {
-    pos++
-    elem.style.top = pos + 'px';
-    elem.style.left = pos + 'px';
+Promise.resolve()
+    .then(() => console.log('promise'));
 
-    if (pos < 300) {
-        requestAnimationFrame(myAnimation);
-    }
-}
+queueMicrotask(() => console.log('wow'));
 
-btn.addEventListener('click', () => requestAnimationFrame(myAnimation));
+Promise.resolve()
+    .then(() => console.log('promise_2'));
 
-let id = requestAnimationFrame(myAnimation);
-cancelAnimationFrame(id)
+console.log('code');
+setTimeout(() => {
+    console.log('timeout2')
+});
 
+//последовательность выполнения задач
+
+// () => {} // macrotask
+// microtasks: then/catch/finally/await
+// render
+//() => {}
+// microtasks: then/catch/finally/await
+// render
+// () => {}
