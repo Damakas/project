@@ -1,39 +1,38 @@
 'use strict'
 
-
-const data = [
-    {
-        id: 'box',
-        tag: 'div'
-    },
-    {
-        id: 'fff',
-        tag: 'nav'
-    },
-    {
-        id: 'circle',
-        tag: ''
-    }
-]
-
-try {
-    data.forEach((blockObj, i) => {
-        const block = document.createElement(blockObj.tag);
-
-        if (!blockObj.id) throw new Error(`В данных под номером ${i + 1} нет уникального id`);
-
-        block.setAttribute('id', blockObj.id);
-        document.body.append(block);
-    });
-} catch (e) {
-    if (e.name === 'SyntaxError') {
-
-        console.log(e.message);
-    } else throw e;
-
+function* generator() {
+    yield 'S';
+    yield 'c';
+    yield 'r';
+    yield 'i';
+    yield 'p';
+    yield 't';
 }
 
+const str = generator();
+
+console.log(str.next().value);
+
+function* count(n) {
+    for (let i = 0; i < n; i++) {
+        yield i;
+    }
+}
+
+for (let k of count(7)) {
+    console.log(k)
+}
+
+const counter = count(7);
+
+console.log(counter.next().value)
+console.log(counter.next().value)
+console.log(counter.next().value)
+console.log(counter.next().value)
+console.log(counter.next().value)
+console.log(counter.next().value)
 
 
-// const err = new SyntaxError('sddsg');
-// console.log(err.name, err.message, err.stack)
+
+
+
