@@ -1,4 +1,4 @@
-.img_lesson{
+/* .img_lesson{
         width: 1000px;
 }
 
@@ -16,13 +16,13 @@ div h1{
     text-align: left;
     font-size: 40px;
 }
-/* * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-} */
+}
 
-/* .box {
+.box {
     width: 300px;
     height: 250px;
     margin: 40px auto;
@@ -30,7 +30,7 @@ div h1{
     border: 2px solid black;
     text-align: center;
     font-size: 20px;
-} */
+}
 
 .box {
   position: absolute;
@@ -45,14 +45,14 @@ div h1{
   border: 3px solid red;
   margin-bottom: 100px;
 }
-/* button {
+button {
   margin-bottom: 10px;
   margin-top: 10px;
   width: 100px;
   height: 40px;
   background-color: yellow;
   border: none;
-} */
+}
 
 * {
     box-sizing: border-box;
@@ -69,4 +69,4 @@ button {
 img {
     margin: 40px 0;
     max-width: 300px;
-}
+}  */

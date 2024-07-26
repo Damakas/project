@@ -1,28 +1,10 @@
 'use strict'
 
-setTimeout(() => {
-    console.log('timeout')
+import { tns } from "./node_modules/tiny-slider/src/tiny-slider";
+
+tns({
+    container: '.my-slider',
+    items: 1,
+    slideBy: 'page',
+    autoplay: true
 });
-
-Promise.resolve()
-    .then(() => console.log('promise'));
-
-queueMicrotask(() => console.log('wow'));
-
-Promise.resolve()
-    .then(() => console.log('promise_2'));
-
-console.log('code');
-setTimeout(() => {
-    console.log('timeout2')
-});
-
-//последовательность выполнения задач
-
-// () => {} // macrotask
-// microtasks: then/catch/finally/await
-// render
-//() => {}
-// microtasks: then/catch/finally/await
-// render
-// () => {}
