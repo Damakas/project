@@ -1,37 +1,73 @@
 'use strict';
 
-// Аттрибуты(флаги) свойств объекта
+//Как сделать объект перебираемым
 
-// writable        если будет true,то свойство можно изменить,если false ,то только для чтения
-// enumerable      если стоит true , то свойство будет перечислятся в циклах,если false то циклы будут его игнорировать
-// configurable    если стоит true,то свойство можно удалить,а аттрибуты можно изменить,если false,то нельзя
+const salaries = {
+    john: 500,
+    ivan: 1000,
+    ann: 5000,
+    sayHello: function () {
+        console.log('Hello');
+    }
+}
 
+
+salaries[Symbol.iterator] = function () {
+    return {
+        current: this.john,
+        last: this.ann,
+
+        next() {
+            if (this.current < this.last) {
+                this.current = this.current + 500;
+                return { done: false, value: this.current }
+            } else {
+                return { done: true }
+            }
+        }
+    }
+}
+
+for (let res of salaries) {
+    console.log(res)
+}
+
+// const iterator = salaries[Symbol.iterator]();
+// console.log(iterator.next());
+
+
+//
 
 const user = {
     name: 'Alex',
     surname: 'Smith',
+    birthday: '20/04/1993',
     showMyPublicData: function () {
         console.log(`${this.name} ${this.surname}`)
     }
 }
-// Object.defineProperty(user, 'birthday', { value: prompt('Date?'), enumerable: true, configurable: true });// Метод который редактирует флаги свойства или создает новые свойства
 
-// console.log(Object.getOwnPropertyDescriptor(user, 'birthday'));//Метод который показывает флаги определенного свойства
+for (const key in user) {
+    console.log(user[key])
+}
 
-console.log(Object.getOwnPropertyDescriptor(Math, 'PI'));//Метод который показывает флаги определенного свойства
+const arr = ['b', 'a', 'c'];
+Array.prototype.someMethod = function () { };
+
+for (const key of arr) {
+    console.log(key);
+}
 
 
-Object.defineProperty(user, 'showMyPublicData', { enumerable: false })
 
-for (let key in user) console.log(key)
+for (const key in arr) {
+    console.log(arr[key]);
+}
 
-Object.defineProperties(user, {
-    name: { writable: false },
-    surname: { writable: false }
-})
+const arrString = 'string';
 
-// Object.defineProperty(user, 'name', { writable: false });// Метод который редактирует флаги свойства
-// Object.defineProperty(user, 'gender', { value: 'male' });// Метод позволяет создать новое свойство с указанным флагом,если не указать флаг,то они автоматически все будут false
-// console.log(Object.getOwnPropertyDescriptor(user, 'gender'));
+for (const key in arrString) {
+    console.log(arrString[key]);
+}
 
 
