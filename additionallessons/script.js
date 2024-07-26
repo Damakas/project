@@ -1,65 +1,34 @@
 'use strict';
 
-const user = {
-    name: 'Alex',
-    surname: 'Smith',
-    birthday: '20/04/1993',
-    showMyPublicData: function () {
-        console.log(`${this.name} ${this.surname}`)
-    }
+// Set возвращает массив без повторяющихся значений
+
+const arr = ['Alex', 'Anna', 'Oleg', 'Alex'];
+
+function unique(arr) { // Функция возвращает полноценный отфильтрованный массив
+    return Array.from(new Set(arr))
 }
 
-const userMap = new Map(Object.entries(user));
-console.log(userMap);
+console.log(unique(arr));
 
-const newUserObj = Object.fromEntries(userMap);
-console.log(newUserObj)
+const set = new Set(arr);
 
+set.add('Ivan'); // Добавляет значение в массив
+console.log(set)
 
-
-const shops = [
-    { rice: 500 },
-    { oil: 200 },
-    { bread: 50 }
-]
-
-const budget = [5000, 15000, 25000];
-
-const map = new Map([
-    [{ paper: 400 }, 8000]
-]);
-
-shops.forEach((shop, i) => {
-    map.set(shop, budget[i])
-})
-
-console.log(map);
-
-// console.log(map.get(shops[0])); // Возвращает значение
-// console.log(map.has(shops[0]));// Проверяет на наличие 
-// map.delete(key); // Удаляет ключ
-// map.clear(); // Очищает карту
-// map.size; // Возвращает размер карты
-// map.keys() // Возвращает итерируемый объект по ключам map - это итерируемый объект
+set.delete(value) // Удаляет значение
+set.has(value) // Проверяет массив на наличие значения
+set.clear() // Очищает массив
+set.size; // Возвращает размер массива
 
 
-// Метод map который перебирает объект и возвращает в массив,который возвращает массив с ключами объекта
-// const goods = [];
-// for (let shop of map.keys()) {
-//     goods.push(Object.keys(shop)[0])
-// }
-// console.log(goods)
 
-// Метод который возвращает значения ключей
-// for (let price of map.values()) {
-//     console.log(price)
-// }
+for (let value of set) console.log(value)
 
-// Метод который возвращает массив в который массик[ключ,значение]
-// for (let [shop, price] of map.entries()) {
-//     console.log(price, shop);
-// }
+set.forEach((value, valueAgaing, set) => {
+    console.log(value, valueAgaing);
+});
 
-// map.forEach((value, key, map) => {
-//     console.log(key, value)
-// });
+console.log(set.values())
+console.log(set.keys());
+console.log(set.entries());
+
