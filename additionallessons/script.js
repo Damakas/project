@@ -1,43 +1,5 @@
 'use strict';
 
-//Как сделать объект перебираемым
-
-const salaries = {
-    john: 500,
-    ivan: 1000,
-    ann: 5000,
-    sayHello: function () {
-        console.log('Hello');
-    }
-}
-
-
-salaries[Symbol.iterator] = function () {
-    return {
-        current: this.john,
-        last: this.ann,
-
-        next() {
-            if (this.current < this.last) {
-                this.current = this.current + 500;
-                return { done: false, value: this.current }
-            } else {
-                return { done: true }
-            }
-        }
-    }
-}
-
-for (let res of salaries) {
-    console.log(res)
-}
-
-// const iterator = salaries[Symbol.iterator]();
-// console.log(iterator.next());
-
-
-//
-
 const user = {
     name: 'Alex',
     surname: 'Smith',
@@ -47,27 +9,57 @@ const user = {
     }
 }
 
-for (const key in user) {
-    console.log(user[key])
-}
+const userMap = new Map(Object.entries(user));
+console.log(userMap);
 
-const arr = ['b', 'a', 'c'];
-Array.prototype.someMethod = function () { };
-
-for (const key of arr) {
-    console.log(key);
-}
+const newUserObj = Object.fromEntries(userMap);
+console.log(newUserObj)
 
 
 
-for (const key in arr) {
-    console.log(arr[key]);
-}
+const shops = [
+    { rice: 500 },
+    { oil: 200 },
+    { bread: 50 }
+]
 
-const arrString = 'string';
+const budget = [5000, 15000, 25000];
 
-for (const key in arrString) {
-    console.log(arrString[key]);
-}
+const map = new Map([
+    [{ paper: 400 }, 8000]
+]);
+
+shops.forEach((shop, i) => {
+    map.set(shop, budget[i])
+})
+
+console.log(map);
+
+// console.log(map.get(shops[0])); // Возвращает значение
+// console.log(map.has(shops[0]));// Проверяет на наличие 
+// map.delete(key); // Удаляет ключ
+// map.clear(); // Очищает карту
+// map.size; // Возвращает размер карты
+// map.keys() // Возвращает итерируемый объект по ключам map - это итерируемый объект
 
 
+// Метод map который перебирает объект и возвращает в массив,который возвращает массив с ключами объекта
+// const goods = [];
+// for (let shop of map.keys()) {
+//     goods.push(Object.keys(shop)[0])
+// }
+// console.log(goods)
+
+// Метод который возвращает значения ключей
+// for (let price of map.values()) {
+//     console.log(price)
+// }
+
+// Метод который возвращает массив в который массик[ключ,значение]
+// for (let [shop, price] of map.entries()) {
+//     console.log(price, shop);
+// }
+
+// map.forEach((value, key, map) => {
+//     console.log(key, value)
+// });
